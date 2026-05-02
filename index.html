@@ -1,31 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Turnstile 认证跳转</title>
+<meta charset="utf-8">
+<title>Verify</title>
 </head>
 <body>
 
-<!-- Turnstile 认证框 一直显示 不隐藏 -->
 <div class="cf-turnstile"
      data-sitekey="0x4AAAAAADHRPsz7BGrK-U0Sd2ConCficI8"
-     data-action="web"
-     data-callback="verifySuccess">
+     data-callback="ok">
 </div>
 
-<!-- 加载验证脚本 -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
 
 <script>
-// 打开页面就弹出浏览器自带弹窗
-window.onload = function(){
-    alert("Please verify, thanks");
-};
-
-// 认证成功跳转你的网址
-function verifySuccess(){
-    // 补全https正常跳转
-    window.location.href = "https://www.zhangparker.online/zh-cn/";
+alert("Please verify, thanks");
+function ok(){
+location.href="https://www.zhangparker.online/zh-cn/";
 }
 </script>
 
