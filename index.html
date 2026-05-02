@@ -5,18 +5,16 @@
 <title>Verify</title>
 </head>
 <body>
-    <div class="cf-turnstile" 
-         data-sitekey="0x4AAAAAADHRPsz7BGrK-U0Sd2ConCficI8"
-         data-action="web">
-    </div>
+    <div id="captcha"></div>
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
     <script>
-        window.turnstileRendered = function(){};
-        window.onload = function(){
-            turnstile.render('.cf-turnstile', {
-                sitekey: "0x4AAAAAADHRPsz7BGrK-U0Sd2ConCficI8",
-                callback: function(){
+        window.onload = function() {
+            turnstile.render("#captcha", {
+                // 这里用的是你图片里的「站点密钥」，不是密钥！
+                sitekey: "0x4AAAAAADHRPirBrrHCmnZR",
+                callback: function() {
+                    // 验证成功跳转到你的网站
                     location.href = "https://www.zhangparker.online/zh-cn/";
                 }
             });
