@@ -23,7 +23,7 @@ def validate_turnstile(token, secret, remoteip=None):
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
-SECRET_KEY = 'your-secret-key'
+SECRET_KEY = '0x4AAAAAADHRPsz7BGrK-U0Sd2ConCficI8'
 
 @app.route('/submit-form', methods=['POST'])
 def submit_form():
