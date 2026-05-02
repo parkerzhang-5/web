@@ -2,33 +2,32 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Verification</title>
+    <title>Turnstile 认证跳转</title>
 </head>
 <body>
-    <!-- 提示文字（初始显示） -->
-    <div id="tip">Please verify, thanks</div>
 
-    <!-- Turnstile 验证框（默认隐藏） -->
-    <div id="turnstile-box" class="cf-turnstile"
-         style="display: none;"
-         data-sitekey="0x4AAAAAADHRPsz7BGrK-U0Sd2ConCficI8"
-         data-action="web"
-         data-callback="goJump">
-    </div>
+<!-- Turnstile 认证框 一直显示 不隐藏 -->
+<div class="cf-turnstile"
+     data-sitekey="0x4AAAAAADHRPsz7BGrK-U0Sd2ConCficI8"
+     data-action="web"
+     data-callback="verifySuccess">
+</div>
 
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+<!-- 加载验证脚本 -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
 
-    <script>
-        // 页面加载完，显示验证框，隐藏提示
-        window.onload = function() {
-            document.getElementById("tip").style.display = "none";
-            document.getElementById("turnstile-box").style.display = "block";
-        };
+<script>
+// 打开页面就弹出浏览器自带弹窗
+window.onload = function(){
+    alert("Please verify, thanks");
+};
 
-        // 验证成功跳转
-        function goJump() {
-            window.location.href = "https://zhangparker.online/zh-cn/"; // 替换成你的链接
-        }
-    </script>
+// 认证成功跳转你的网址
+function verifySuccess(){
+    // 补全https正常跳转
+    window.location.href = "https://www.zhangparker.online/zh-cn/";
+}
+</script>
+
 </body>
 </html>
