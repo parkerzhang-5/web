@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>Verify</title>
+</head>
 <body>
-<div class="cf-turnstile" data-sitekey="0x4AAAAAADHRPsz7BGrK-U0Sd2ConCficI8"></div>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
-<script>
-document.querySelector('.cf-turnstile').addEventListener('turnstile-success', ()=>{
-    location.href="https://www.zhangparker.online/zh-cn/";
-});
-</script>
+    <div class="cf-turnstile" 
+         data-sitekey="0x4AAAAAADHRPsz7BGrK-U0Sd2ConCficI8"
+         data-action="web">
+    </div>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+    <script>
+        window.turnstileRendered = function(){};
+        window.onload = function(){
+            turnstile.render('.cf-turnstile', {
+                sitekey: "0x4AAAAAADHRPsz7BGrK-U0Sd2ConCficI8",
+                callback: function(){
+                    location.href = "https://www.zhangparker.online/zh-cn/";
+                }
+            });
+        };
+    </script>
 </body>
 </html>
