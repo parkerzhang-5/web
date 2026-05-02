@@ -1,24 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Verify</title>
+    <meta charset="UTF-8">
+    <title>Verify</title>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+        /* 强制显示区域，不隐藏 */
+        #captcha-area {margin: 50px auto; width: 300px;}
+        .tip {color: #666; margin-bottom: 20px;}
+        .error {color: red; margin-top: 20px;}
+    </style>
 </head>
 <body>
-    <div id="captcha"></div>
+    <div id="captcha-area">
+        <p class="tip">Please verify, thanks</p>
+        <!-- 自动渲染，绑定成功+失败回调 -->
+        <div 
+            class="cf-turnstile"
+            data-sitekey="0x4AAAAAADHRPirBrrHCmnZR"
+            data-callback="onSuccess"
+            data-error-callback="onError"
+        ></div>
+        <div id="error-tip" class="error"></div>
+    </div>
 
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
     <script>
-        window.onload = function() {
-            turnstile.render("#captcha", {
-                // 这里用的是你图片里的「站点密钥」，不是密钥！
-                sitekey: "0x4AAAAAADHRPirBrrHCmnZR",
-                callback: function() {
-                    // 验证成功跳转到你的网站
-                    location.href = "https://www.zhangparker.online/zh-cn/";
-                }
-            });
-        };
+        // 验证成功跳转
+        function onSuccess() {
+            window.location.href = "https://www.zhangparker.online/zh-cn/";
+        }
+        // 加载失败显示错误
+        function onError(code) {
+            document.getElementById("error-tip").innerText = "加载失败：" + code;
+        }
+        // 超时检测（10秒没加载就提示网络问题）
+        setTimeout(()=>{
+            if(!window.turnstile) {
+                document.getElementById("error-tip").innerText = "⚠️ 国内网络拦截，请切换手机流量打开";
+            }
+        }, 10000);
     </script>
 </body>
 </html>
