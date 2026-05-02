@@ -2,23 +2,25 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Turnstile 验证跳转</title>
+    <title>人机验证</title>
 </head>
 <body>
-<script>
-alert("请认证，谢谢")
     <div class="cf-turnstile"
          data-sitekey="0x4AAAAAADHRPsz7BGrK-U0Sd2ConCficI8"
          data-action="web"
-         data-callback="onVerified">
+         data-callback="goJump">
     </div>
-
+    <script>
+        alert("请认证,谢谢)
+    <!-- Cloudflare 脚本国内能加载，无墙 -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
-    
-        // 验证成功后触发
-        function onVerified(token) {
-            // 👇 这里改成你要跳转的链接
-            window.location.href = "https://zhangparker.online/zh-cn";
+
+
+
+        // 验证成功自动跳转
+        function goJump() {
+            // ↓ 改成你要跳的链接
+            window.location.href = "https://zhangparker.online";
         }
     </script>
 </body>
