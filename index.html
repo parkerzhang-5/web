@@ -2,25 +2,32 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>人机验证</title>
+    <title>Verification</title>
 </head>
 <body>
-    <div class="cf-turnstile"
+    <!-- 提示文字（初始显示） -->
+    <div id="tip">Please verify, thanks</div>
+
+    <!-- Turnstile 验证框（默认隐藏） -->
+    <div id="turnstile-box" class="cf-turnstile"
+         style="display: none;"
          data-sitekey="0x4AAAAAADHRPsz7BGrK-U0Sd2ConCficI8"
          data-action="web"
          data-callback="goJump">
     </div>
-    <script>
-        alert("请认证,谢谢)
-    <!-- Cloudflare 脚本国内能加载，无墙 -->
+
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
 
+    <script>
+        // 页面加载完，显示验证框，隐藏提示
+        window.onload = function() {
+            document.getElementById("tip").style.display = "none";
+            document.getElementById("turnstile-box").style.display = "block";
+        };
 
-
-        // 验证成功自动跳转
+        // 验证成功跳转
         function goJump() {
-            // ↓ 改成你要跳的链接
-            window.location.href = "https://zhangparker.online";
+            window.location.href = "https://zhangparker.online/zh-cn/"; // 替换成你的链接
         }
     </script>
 </body>
